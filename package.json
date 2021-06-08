@@ -1,0 +1,28 @@
+{
+  "name": "valle-pattern-formater",
+  "version": "0.1.0",
+  "description": "[![npm](https://img.shields.io/npm/v/valle-pattern-formater.svg)](https://www.npmjs.com/package/valle-pattern-formater)",
+  "main": "patternFormater.js",
+  "scripts": {
+    "test": "node_modules/.bin/jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valleweb/valle-pattern-formater.git"
+  },
+  "keywords": [
+    "pattern",
+    "formarter",
+    "valle"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valleweb/valle-pattern-formater/issues"
+  },
+  "homepage": "https://github.com/valleweb/valle-pattern-formater#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "jest": "^27.0.3"
+  }
+}
