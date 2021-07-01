@@ -4,7 +4,8 @@
   "description": "[![npm](https://img.shields.io/npm/v/valle-pattern-formater.svg)](https://www.npmjs.com/package/valle-pattern-formater)",
   "main": "patternFormater.js",
   "scripts": {
-    "test": "node_modules/.bin/jest"
+    "test": "node_modules/.bin/jest",
+    "test-jenkins": "node_modules/.bin/jest --ci --reporters=default --reporters=jest-junit"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/valleweb/valle-pattern-formater#readme",
   "devDependencies": {
     "chai": "^4.3.4",
-    "jest": "^27.0.3"
+    "jest": "^27.0.3",
+    "jest-junit": "^12.2.0"
   }
 }
