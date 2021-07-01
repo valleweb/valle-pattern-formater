@@ -5,9 +5,9 @@ describe('Should format float numbers with #,##0.00 pattern', () => {
 
     test('Should format 100,00', () => {
     
-    const result = patternFormater.internationalToSimple('#,##0.00', '100,00');
+        const result = patternFormater.internationalToSimple('#,##0.00', '100,00');
 
-    chai.expect(result).to.equal('100,00');
+        chai.expect(result).to.equal('100,00');
 
     });
 
