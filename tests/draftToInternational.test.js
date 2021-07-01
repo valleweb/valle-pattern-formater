@@ -1,4 +1,4 @@
-const patternFormater = require('./patternFormater');
+const patternFormater = require('../patternFormater');
 const chai = require('chai');
 
 describe('Should format float numbers with #,##0.00 pattern', () => {

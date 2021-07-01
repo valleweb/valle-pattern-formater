@@ -1,4 +1,4 @@
-const patternFormater = require('./patternFormater');
+const patternFormater = require('../patternFormater');
 const chai = require('chai');
 
 test('Should format a CPF pattern', () => {
