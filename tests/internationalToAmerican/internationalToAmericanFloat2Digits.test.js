@@ -1,6 +1,5 @@
-const patternFormater =  require('../../src/patternFormater');
+const patternFormater = require('../../src/patternFormater');
 const chai = require('chai');
-const { expect } = require('chai');
 
 describe('Should format float numbers with #,##0.00 pattern', () => {
 
