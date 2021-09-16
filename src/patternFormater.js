@@ -18,7 +18,7 @@ const draftToInternational = (pattern, data) => {
   if (pattern[0] === '#') {
 
     if (pattern.indexOf('.') === -1) {
-      console.log('not found .')
+      console.log('not found .');
 
       if (pattern.indexOf('.')) {
         data = String(data).split(',')[0]
@@ -27,52 +27,91 @@ const draftToInternational = (pattern, data) => {
       return String(data).replace(/(.)(?=(\d{3})+$)/g,'$1.');
     }
 
-        // (patter) total digits after .
-        const patternDeciamls = pattern.split('.')[1].length;
+    // (patter) total digits after .
+    const patternDeciamls = pattern.split('.')[1].length;
 
-        const dataDigits = String(data).split(',');
+    const dataDigits = String(data).split(',');
 
-        let newValue = '';
-  
-        // (data) verify and get numbers before .
-  
-        if(dataDigits[0]) {
-          newValue = String(dataDigits[0]).replace(/(.)(?=(\d{3})+$)/g,'$1.');
-        } else {
-          newValue = '0';
-        }
-  
+    let newValue = '';
+
+    // (data) verify and get numbers before .
+
+    if (dataDigits[0]) {
+      newValue = String(dataDigits[0]).replace(/(.)(?=(\d{3})+$)/g,'$1.');
+    } else {
+      newValue = '0';
+    }
+
         // (data) Verify and get digits after .
-  
-        if(dataDigits[1]) {
-  
-          newValue = newValue + ',' + dataDigits[1].substr(0, patternDeciamls);
-  
-          if(dataDigits[1].length < patternDeciamls) {
-  
-            const total = patternDeciamls - dataDigits[1].length;
-  
-            for (let index = 0; index < total; index++) {
-              newValue = newValue + '0'
-  
-            }
+
+    if(dataDigits[1]) {
+
+      newValue = newValue + ',' + dataDigits[1].substr(0, patternDeciamls);
+
+      if(dataDigits[1].length < patternDeciamls) {
+
+        const total = patternDeciamls - dataDigits[1].length;
+
+        for (let index = 0; index < total; index++) {
+          newValue = newValue + '0'
+        }
+
           }
-  
-        } else {
+
+    } else {
           newValue = newValue + ',' + pattern.split('.')[1];
         }
-  
+
         return newValue;
-  
+
       }
-  
+
 }
 
 const internationalToSimple = () => {
 
 }
 
-const internationalToAmerican = () => {
+const internationalToAmerican = (pattern, data) => {
+
+    if (pattern[0] === '#' && data) {
+
+      let textData = String(data);
+
+      const hasNumbersBeforeComa = textData.split(',')[0].length;
+
+      if (!hasNumbersBeforeComa) {
+        textData = '0' + textData;
+      }
+
+      const patternDecimalsSize = pattern.split('.')[1].length;
+
+      const dataDecimalsSize = textData.split(',')[1].length;
+
+      if (dataDecimalsSize > patternDecimalsSize) {
+
+        const dataDecimals = textData.split(',')[1];
+
+        const newDecimals = dataDecimals.substr(0, patternDecimalsSize);
+
+        textData = textData.split(',')[0] + ',' + newDecimals;
+
+      }
+
+      if (dataDecimalsSize < patternDecimalsSize) {
+
+        const missingDecimal = patternDecimalsSize - dataDecimalsSize;
+
+        for (let index = 0; index < missingDecimal; index++) {
+          textData = textData + '0'
+        }
+
+      }
+
+      return textData.replace(/\./g, "").replace(/\,/g, ".");
+    }
+
+    return data;
 
 }
 
