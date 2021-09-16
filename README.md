@@ -4,6 +4,8 @@
 
 [![dependencies Status](https://david-dm.org/valleweb/valle-pattern-formater/status.svg)](https://david-dm.org/valleweb/valle-pattern-formater)
 
+![License](https://img.shields.io/badge/license-GPL%20v2-purple)
+
 ## Installation
 
 <hr>
@@ -46,4 +48,4 @@ See [Releases](https://github.com/valleweb/valle-pattern-formater/releases) for 
 
 ## License
 
-[MIT License](https://github.com/valleweb/valle-pattern-formater/blob/master/LICENSE.md) @ valleweb
+[GPL v2 License](https://github.com/valleweb/valle-pattern-formater/blob/master/LICENSE.md) @ valleweb
