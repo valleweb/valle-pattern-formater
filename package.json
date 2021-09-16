@@ -5,7 +5,8 @@
   "main": "patternFormater.js",
   "scripts": {
     "test": "node_modules/.bin/jest",
-    "test-jenkins": "node_modules/.bin/jest --ci --reporters=default --reporters=jest-junit"
+    "test-jenkins": "node_modules/.bin/jest --ci --reporters=default --reporters=jest-junit",
+    "lint": "node_modules/.bin/eslint ./src/"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/valleweb/valle-pattern-formater#readme",
   "devDependencies": {
     "chai": "^4.3.4",
+    "eslint": "^7.32.0",
     "jest": "^27.0.3",
     "jest-junit": "^12.2.0"
   }
