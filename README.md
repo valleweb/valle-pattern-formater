@@ -36,7 +36,7 @@ To keep better organization of releases we follow the [Semantic Versioning 2.0.0
 
 Find on our [issues](https://github.com/valleweb/valle-pattern-formater/issues/) the next steps of the project ;)
 <br>
-Want to contribute? [Follow these recommendations](https://github.com/valleweb/valle-pattern-formater/blob/master/CONTRIBUTING.md).
+Want to contribute? [Follow these recommendations](./CONTRIBUTING.md).
 
 <hr>
 
