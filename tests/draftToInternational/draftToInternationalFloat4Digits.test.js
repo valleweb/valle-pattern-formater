@@ -5,7 +5,7 @@ describe('Should format float numbers with #,##0.0000 pattern', () => {
 
     test('Should format 100', () => {
 
-        const result = patternFormater.draftToInternational('#,##0.0000', '100,0000');
+        const result = patternFormater.draftToInternational('#,##0.0000', '100');
 
         chai.expect(result).to.equal('100,0000');
 
@@ -13,7 +13,7 @@ describe('Should format float numbers with #,##0.0000 pattern', () => {
 
     test('Should format 10000', () => {
 
-        const result = patternFormater.draftToInternational('#,##0.0000', '10.000,0000');
+        const result = patternFormater.draftToInternational('#,##0.0000', '10000');
 
         chai.expect(result).to.equal('10.000,0000');
 

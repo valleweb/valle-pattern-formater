@@ -18,10 +18,13 @@ const draftToInternational = (pattern, data) => {
   if (pattern[0] === '#') {
 
     if (pattern.indexOf('.') === -1) {
-      console.log('not found .');
 
       if (pattern.indexOf('.')) {
         data = String(data).split(',')[0];
+      }
+
+      if(!data) {
+        data = '0';
       }
 
       return String(data).replace(/(.)(?=(\d{3})+$)/g,'$1.');

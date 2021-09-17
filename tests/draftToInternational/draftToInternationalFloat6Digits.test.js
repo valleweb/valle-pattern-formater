@@ -13,7 +13,7 @@ describe('Should format float numbers with #,##0.000000 pattern', () => {
 
     test('Should format 1000,5', () => {
 
-        const result = patternFormater.draftToInternational('#,##0.000000', '1.000,500000');
+        const result = patternFormater.draftToInternational('#,##0.000000', '1000,5');
 
         chai.expect(result).to.equal('1.000,500000');
 
