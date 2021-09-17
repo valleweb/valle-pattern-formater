@@ -4,8 +4,8 @@ const draftToInternational = (pattern, data) => {
 
     let regex = '';
 
-    for (let i = 1; pattern.indexOf('X') >= 0; ++i) {
-      pattern = pattern.replace('X', '$'+i);
+    for (let index = 1; pattern.indexOf('X') >= 0; ++index) {
+      pattern = pattern.replace('X', '$' + index);
       regex += '(\\d)';
     }
 
@@ -21,20 +21,17 @@ const draftToInternational = (pattern, data) => {
       console.log('not found .');
 
       if (pattern.indexOf('.')) {
-        data = String(data).split(',')[0]
+        data = String(data).split(',')[0];
       }
 
       return String(data).replace(/(.)(?=(\d{3})+$)/g,'$1.');
     }
 
-    // (patter) total digits after .
     const patternDeciamls = pattern.split('.')[1].length;
 
     const dataDigits = String(data).split(',');
 
     let newValue = '';
-
-    // (data) verify and get numbers before .
 
     if (dataDigits[0]) {
       newValue = String(dataDigits[0]).replace(/(.)(?=(\d{3})+$)/g,'$1.');
@@ -42,87 +39,93 @@ const draftToInternational = (pattern, data) => {
       newValue = '0';
     }
 
-        // (data) Verify and get digits after .
-
-    if(dataDigits[1]) {
+    if (dataDigits[1]) {
 
       newValue = newValue + ',' + dataDigits[1].substr(0, patternDeciamls);
 
-      if(dataDigits[1].length < patternDeciamls) {
+      if (dataDigits[1].length < patternDeciamls) {
 
         const total = patternDeciamls - dataDigits[1].length;
 
         for (let index = 0; index < total; index++) {
-          newValue = newValue + '0'
+          newValue = newValue + '0';
         }
-
-          }
-
-    } else {
-          newValue = newValue + ',' + pattern.split('.')[1];
-        }
-
-        return newValue;
 
       }
 
-}
+    } else {
+      newValue = newValue + ',' + pattern.split('.')[1];
+    }
+
+    return newValue;
+
+  }
+
+};
 
 const internationalToSimple = () => {
 
-}
+};
 
 const internationalToAmerican = (pattern, data) => {
 
-    if (pattern[0] === '#' && data) {
+  if (pattern.indexOf('.') === -1) {
+    return data.replace(/\./g, '');
+  }
 
-      let textData = String(data);
+  if (pattern[0] === '#' && data) {
 
-      const hasNumbersBeforeComa = textData.split(',')[0].length;
+    let textData = String(data);
 
-      if (!hasNumbersBeforeComa) {
-        textData = '0' + textData;
-      }
+    const hasNumbersBeforeComa = textData.split(',')[0].length;
 
-      const patternDecimalsSize = pattern.split('.')[1].length;
-
-      const dataDecimalsSize = textData.split(',')[1].length;
-
-      if (dataDecimalsSize > patternDecimalsSize) {
-
-        const dataDecimals = textData.split(',')[1];
-
-        const newDecimals = dataDecimals.substr(0, patternDecimalsSize);
-
-        textData = textData.split(',')[0] + ',' + newDecimals;
-
-      }
-
-      if (dataDecimalsSize < patternDecimalsSize) {
-
-        const missingDecimal = patternDecimalsSize - dataDecimalsSize;
-
-        for (let index = 0; index < missingDecimal; index++) {
-          textData = textData + '0'
-        }
-
-      }
-
-      return textData.replace(/\./g, "").replace(/\,/g, ".");
+    if (!hasNumbersBeforeComa) {
+      textData = '0' + textData;
     }
 
-    return data;
+    const patternDecimalsSize = pattern.split('.')[1].length;
 
-}
+    if (textData.indexOf(',') === -1) {
+      textData = textData + ',';
+    }
+
+    const dataDecimalsSize = textData.split(',')[1].length;
+
+    if (dataDecimalsSize > patternDecimalsSize) {
+
+      const dataDecimals = textData.split(',')[1];
+
+      const newDecimals = dataDecimals.substr(0, patternDecimalsSize);
+
+      textData = textData.split(',')[0] + ',' + newDecimals;
+
+    }
+
+    if (dataDecimalsSize < patternDecimalsSize) {
+
+      const missingDecimal = patternDecimalsSize - dataDecimalsSize;
+
+      for (let index = 0; index < missingDecimal; index++) {
+        textData = textData + '0';
+      }
+
+    }
+
+    return textData.replace(/\./g, '').replace(/,/g, '.');
+
+  }
+
+  return data;
+
+};
 
 const americanToInternational = () => {
 
-}
+};
 
 module.exports = {
-    draftToInternational,
-    internationalToSimple,
-    internationalToAmerican,
-    americanToInternational,
-}
-
+  draftToInternational,
+  internationalToSimple,
+  internationalToAmerican,
+  americanToInternational,
+};
