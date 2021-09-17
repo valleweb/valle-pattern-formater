@@ -1,17 +1,50 @@
 const draftToInternational = (pattern, data) => {
 
-  if (pattern[0] === 'X') {
+  if (pattern[1] === 'X') {
 
-    let regex = '';
+    const newString = String(data);
 
-    for (let index = 1; pattern.indexOf('X') >= 0; ++index) {
-      pattern = pattern.replace('X', '$' + index);
-      regex += '(\\d)';
+    const totalOfDigits = newString.length;
+    let totalOfX = 0;
+
+    for (let index = 0; index < pattern.length; ++index) {
+      if (pattern[index] === 'X') ++totalOfX;
     }
 
-    regex += '[^]*';
+    let result = '';
+    let currentDigit = 0;
+    let passX = 0;
+    let passDigits = 0;
 
-    return String(data).replace(new RegExp(regex), pattern);
+    for ( let index = 0; index < pattern.length; ++index) {
+
+      if (pattern[index] === 'X') {
+
+        result = result + newString[currentDigit];
+        ++currentDigit;
+        ++passX;
+        ++passDigits;
+
+      } else if (pattern[index] === 'O') {
+
+        const restOfX = totalOfX - passX;
+        const restOfDigits = totalOfDigits - passDigits;
+
+        if (restOfDigits > restOfX) {
+
+          result = result + newString[currentDigit];
+          ++currentDigit;
+          ++passDigits;
+
+        }
+
+      } else {
+        result = result + pattern[index];
+      }
+
+    }
+
+    return result;
 
   }
 
@@ -30,7 +63,7 @@ const draftToInternational = (pattern, data) => {
       return String(data).replace(/(.)(?=(\d{3})+$)/g,'$1.');
     }
 
-    const patternDeciamls = pattern.split('.')[1].length;
+    const patternDecimals = pattern.split('.')[1].length;
 
     const dataDigits = String(data).split(',');
 
@@ -44,11 +77,11 @@ const draftToInternational = (pattern, data) => {
 
     if (dataDigits[1]) {
 
-      newValue = newValue + ',' + dataDigits[1].substr(0, patternDeciamls);
+      newValue = newValue + ',' + dataDigits[1].substr(0, patternDecimals);
 
-      if (dataDigits[1].length < patternDeciamls) {
+      if (dataDigits[1].length < patternDecimals) {
 
-        const total = patternDeciamls - dataDigits[1].length;
+        const total = patternDecimals - dataDigits[1].length;
 
         for (let index = 0; index < total; index++) {
           newValue = newValue + '0';
