@@ -1,37 +1,37 @@
 const draftToInternational = (pattern, data) => {
 
-    if (pattern[0] === 'X') {
+  if (pattern[0] === 'X') {
 
-        let regex = '';
-  
-        for(var i = 1; pattern.indexOf('X') >= 0; ++i) {
-            pattern = pattern.replace('X', '$'+i);
-            regex += '(\\d)';
-        }
-  
-        regex += '[^]*';
-  
-        return String(data).replace(new RegExp(regex), pattern);
-  
+    let regex = '';
+
+    for (let i = 1; pattern.indexOf('X') >= 0; ++i) {
+      pattern = pattern.replace('X', '$'+i);
+      regex += '(\\d)';
+    }
+
+    regex += '[^]*';
+
+    return String(data).replace(new RegExp(regex), pattern);
+
+  }
+
+  if (pattern[0] === '#') {
+
+    if (pattern.indexOf('.') === -1) {
+      console.log('not found .')
+
+      if (pattern.indexOf('.')) {
+        data = String(data).split(',')[0]
       }
-  
-      if (pattern[0] === '#') {
-  
-        if (pattern.indexOf('.') === -1) {
-          console.log('not found .')
-  
-          if(pattern.indexOf('.')) {
-            data = String(data).split(',')[0]
-          }
-  
-          return String(data).replace(/(.)(?=(\d{3})+$)/g,'$1.');
-        }
-  
+
+      return String(data).replace(/(.)(?=(\d{3})+$)/g,'$1.');
+    }
+
         // (patter) total digits after .
         const patternDeciamls = pattern.split('.')[1].length;
-  
+
         const dataDigits = String(data).split(',');
-  
+
         let newValue = '';
   
         // (data) verify and get numbers before .
