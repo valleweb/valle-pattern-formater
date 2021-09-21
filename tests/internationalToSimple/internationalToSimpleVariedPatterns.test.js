@@ -55,7 +55,7 @@ describe('Should format float numbers with varied patterns pattern', () => {
 
         const result = patternFormater.internationalToSimple('#,##0.000000', '1.000.000.000,89');
 
-        chai.expect(result).to.equal('1000000000,89');
+        chai.expect(result).to.equal('1000000000,890000');
 
     });
 
